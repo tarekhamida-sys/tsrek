@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جاري تحميل المتجر...</title>
+
+  <!-- تحميل إعدادات المتجر -->
+  <script src="settings.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cairo', 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 20px;
+    }
+
+    /* حلقة التحميل */
+    .loader-ring {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255,255,255,0.08);
+      border-top-color: #c9a96e;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loader-text {
+      font-size: 15px;
+      color: #64748b;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-ring"></div>
+  <p class="loader-text">جاري تحميل المتجر...</p>
+
+  <script>
+    // ══════════════════════════════════════════════════════════
+    //  عرض القالب المختار مباشرة داخل index.html
+    //  بدون التنقل لصفحة أخرى (الرابط في المتصفح يبقى index.html)
+    // ══════════════════════════════════════════════════════════
+    (function loadActiveTemplate() {
+      var theme = "black"; // القيمة الافتراضية في حال عدم وجود/فشل settings.js
+
+      // قراءة القيمة من settings.js (يدعم المفتاحين theme و template للتوافق)
+      if (
+        typeof storeSettings !== "undefined" &&
+        storeSettings !== null &&
+        typeof storeSettings.theme === "string" &&
+        storeSettings.theme.trim() !== ""
+      ) {
+        theme = storeSettings.theme.trim().toLowerCase();
+      }
+
+      var file = (theme === "white") ? "white.html" : "black.html";
+
+      fetch(file)
+        .then(function (res) {
+          if (!res.ok) throw new Error("فشل تحميل ملف القالب: " + file);
+          return res.text();
+        })
+        .then(function (html) {
+          // استبدال المستند الحالي بالكامل بمحتوى القالب المختار
+          // (head + body + كل الـ scripts بما فيها وحدات Firebase)
+          // الرابط الظاهر في المتصفح يبقى index.html لأنه لا يوجد تنقل صفحة
+          document.open();
+          document.write(html);
+          document.close();
+        })
+        .catch(function (err) {
+          console.error("Template load error:", err);
+          document.querySelector(".loader-text").textContent =
+            "تعذّر تحميل المتجر — حاول تحديث الصفحة";
+        });
+    })();
+  </script>
+</body>
+</html>
