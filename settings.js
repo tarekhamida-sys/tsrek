@@ -1,5 +1,5 @@
 // Store Settings — auto-generated
 const storeSettings = {
-  theme: 'white',
-  template: 'white'
+  theme: 'black',
+  template: 'black'
 };
