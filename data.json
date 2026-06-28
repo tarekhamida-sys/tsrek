@@ -1,0 +1,41 @@
+{
+  "store": {
+    "name": "NOIR",
+    "title": "NOIR — متجر الأزياء",
+    "heroImg": "",
+    "hero1": "الأناقة بلا",
+    "hero2": "حدود",
+    "heroDesc": "أزياء فاخرة تُوصَّل إلى باب منزلك في جميع ولايات الجزائر.",
+    "tiktok": "https://www.tiktok.com/@YOUR_TIKTOK",
+    "instagram": "https://www.instagram.com/YOUR_INSTAGRAM",
+    "facebook": "https://www.facebook.com/YOUR_FACEBOOK",
+    "webhookDirect": "",
+    "webhookCart": ""
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Baggy ",
+      "price": 4000,
+      "emoji": "👕",
+      "category": "Pen",
+      "desc": "سروال انيق",
+      "image": "https://i.ibb.co/S9g0FZq/1-f35d095e-381c-4715-bf6e-0e16ae94eb3d.jpg",
+      "images": [
+        "https://i.ibb.co/S9g0FZq/1-f35d095e-381c-4715-bf6e-0e16ae94eb3d.jpg",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "#000000"
+      ]
+    }
+  ]
+}
